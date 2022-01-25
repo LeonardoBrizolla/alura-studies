@@ -2,7 +2,15 @@ import React from 'react';
 
 class Button extends React.Component {
   render() {
-    return <button>Hello im a button</button>;
+    const isActive = false;
+    const styles = {
+      background: isActive ? 'green' : 'red',
+    };
+    return (
+      <button style={{ backgroundColor: styles.background }}>
+        Hello im a button
+      </button>
+    );
   }
 }
 
