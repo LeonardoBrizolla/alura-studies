@@ -4,7 +4,7 @@ import styles from './Button.module.scss';
 
 class Button extends React.Component {
   render() {
-    return <button className={styles.botao}>Hello im a button</button>;
+    return <button className={styles.botao}> {this.props.children} </button>;
   }
 }
 
