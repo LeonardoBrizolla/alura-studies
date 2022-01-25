@@ -13,6 +13,7 @@ function App() {
 
   const selectTask = (taskSelected: ITasks) => {
     setSelected(taskSelected);
+
     setTasks((oldTasks) =>
       oldTasks.map((task) => ({
         ...task,
@@ -24,8 +25,10 @@ function App() {
   return (
     <div className={styles.AppStyle}>
       <Form setTasks={setTasks} />
+
       <List tasks={tasks} selectTask={selectTask} />
-      <Stopwatch />
+
+      <Stopwatch selected={selected} />
     </div>
   );
 }
