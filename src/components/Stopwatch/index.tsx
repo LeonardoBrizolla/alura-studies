@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { timeToSeconds } from '../../common/utils/time';
 import { ITasks } from '../../types/tasks';
 import Button from '../Button';
@@ -13,9 +13,11 @@ interface StopwatchProps {
 export const Stopwatch = ({ selected }: StopwatchProps) => {
   const [time, setTime] = useState<number>();
 
-  if (selected?.time) {
-    setTime(timeToSeconds(selected.time));
-  }
+  useEffect(() => {
+    if (selected?.time) {
+      setTime(timeToSeconds(selected.time));
+    }
+  }, [selected]);
 
   return (
     <div className={styles.cronometro}>
