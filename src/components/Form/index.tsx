@@ -1,9 +1,12 @@
 import React from 'react';
+import { ITasks } from '../../types/tasks';
 import Button from '../Button';
 
 import styles from './Form.module.scss';
 
-class Form extends React.Component {
+class Form extends React.Component<{
+  setTasks: React.Dispatch<React.SetStateAction<ITasks[]>>;
+}> {
   state = {
     title: '',
     time: '00:00:00',
@@ -11,7 +14,12 @@ class Form extends React.Component {
 
   addTask(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    console.log(`State: `, this.state);
+    this.props.setTasks((oldTasks) => [...oldTasks, { ...this.state }]);
+
+    this.setState({
+      title: '',
+      time: '00:00:00',
+    });
   }
 
   render() {
@@ -47,7 +55,7 @@ class Form extends React.Component {
             required
           />
         </div>
-        <Button>Add</Button>
+        <Button type="submit">Add</Button>
       </form>
     );
   }
