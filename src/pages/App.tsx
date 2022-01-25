@@ -8,34 +8,23 @@ import { ITasks } from '../types/tasks';
 import styles from './App.module.scss';
 
 function App() {
-  const [tasks, setTasks] = useState<ITasks[]>([
-    {
-      title: 'React',
-      time: '02:00:00',
-      selected: false,
-      done: false,
-      id: '1',
-    },
-    {
-      title: 'JS/TS',
-      time: '01:00:00',
-      selected: false,
-      done: false,
-      id: '2',
-    },
-    {
-      title: 'Styled Components',
-      time: '01:30:00',
-      selected: false,
-      done: false,
-      id: '3',
-    },
-  ]);
+  const [tasks, setTasks] = useState<ITasks[]>([]);
+  const [selected, setSelected] = useState<ITasks>();
+
+  const selectTask = (taskSelected: ITasks) => {
+    setSelected(taskSelected);
+    setTasks((oldTasks) =>
+      oldTasks.map((task) => ({
+        ...task,
+        selected: task.id === taskSelected.id ? true : false,
+      }))
+    );
+  };
 
   return (
     <div className={styles.AppStyle}>
       <Form setTasks={setTasks} />
-      <List tasks={tasks} />
+      <List tasks={tasks} selectTask={selectTask} />
       <Stopwatch />
     </div>
   );
