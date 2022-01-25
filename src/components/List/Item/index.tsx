@@ -1,6 +1,6 @@
 import { ITasks } from '../../../types/tasks';
 
-import styles from '../List.module.scss';
+import styles from './Item.module.scss';
 
 interface ItemProps extends ITasks {
   selectTask: (taskSelected: ITasks) => void;
@@ -14,8 +14,6 @@ export const Item = ({
   id,
   selectTask,
 }: ItemProps) => {
-  console.log('Item atual: ', { title, time, selected, done, id });
-
   return (
     <li
       className={`${styles.item} ${selected ? styles.itemSelecionado : ''}`}
