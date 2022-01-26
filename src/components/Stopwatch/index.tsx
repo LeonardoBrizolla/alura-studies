@@ -13,6 +13,16 @@ interface StopwatchProps {
 export const Stopwatch = ({ selected }: StopwatchProps) => {
   const [time, setTime] = useState<number>();
 
+  const regressive = (countTime: number = 0) => {
+    setTimeout(() => {
+      if (countTime > 0) {
+        setTime(countTime - 1);
+
+        return regressive(countTime - 1);
+      }
+    }, 1000)
+  }
+
   useEffect(() => {
     if (selected?.time) {
       setTime(timeToSeconds(selected.time));
@@ -25,7 +35,7 @@ export const Stopwatch = ({ selected }: StopwatchProps) => {
       <div className={styles.relogioWrapper}>
         <Clock time={time} />
       </div>
-      <Button>Start</Button>
+      <Button onClick={() => regressive(time)}>Start</Button>
     </div>
   );
 };
