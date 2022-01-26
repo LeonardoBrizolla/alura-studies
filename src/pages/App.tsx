@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import Form from '../components/Form';
+import { Form } from '../components/Form';
 import List from '../components/List';
 import { Stopwatch } from '../components/Stopwatch';
 import { ITasks } from '../types/tasks';
