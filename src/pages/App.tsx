@@ -22,13 +22,39 @@ function App() {
     );
   };
 
+  const doneTask = () => {
+    if (selected) {
+      setSelected(undefined);
+
+      setTasks((oldTasks) => 
+        oldTasks.map((task) => {
+          if (task.id === selected.id) {
+            return {
+              ...task,
+              selected: false,
+              done: true,
+            }
+          }
+
+          return task
+        })
+      )
+    }
+  }
+
   return (
     <div className={styles.AppStyle}>
       <Form setTasks={setTasks} />
 
-      <List tasks={tasks} selectTask={selectTask} />
+      <List 
+        tasks={tasks} 
+        selectTask={selectTask} 
+      />
 
-      <Stopwatch selected={selected} />
+      <Stopwatch 
+        selected={selected} 
+        doneTask={doneTask}
+      />
     </div>
   );
 }

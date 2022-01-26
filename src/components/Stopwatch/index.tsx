@@ -8,9 +8,10 @@ import styles from './Stopwatch.module.scss';
 
 interface StopwatchProps {
   selected: ITasks | undefined;
+  doneTask: () => void;
 }
 
-export const Stopwatch = ({ selected }: StopwatchProps) => {
+export const Stopwatch = ({ selected, doneTask }: StopwatchProps) => {
   const [time, setTime] = useState<number>();
 
   const regressive = (countTime: number = 0) => {
@@ -20,6 +21,8 @@ export const Stopwatch = ({ selected }: StopwatchProps) => {
 
         return regressive(countTime - 1);
       }
+
+      doneTask();
     }, 1000)
   }
 

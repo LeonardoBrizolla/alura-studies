@@ -16,9 +16,9 @@ export const Item = ({
 }: ItemProps) => {
   return (
     <li
-      className={`${styles.item} ${selected ? styles.itemSelecionado : ''}`}
+      className={`${styles.item} ${selected ? styles.itemSelecionado : ''} ${done ? styles.itemCompletado : ''}`}
       onClick={() =>
-        selectTask({
+        !done && selectTask({
           id,
           title,
           time,
@@ -28,7 +28,13 @@ export const Item = ({
       }
     >
       <h3>{title}</h3>
-      <span> {time} </span>
+      <span>{time}</span>
+      {done && 
+        <span 
+          className={styles.concluido}
+          aria-label="Task done"
+        ></span>
+      }
     </li>
   );
 };
