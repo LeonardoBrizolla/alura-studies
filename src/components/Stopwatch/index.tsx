@@ -22,9 +22,8 @@ export const Stopwatch = ({ selected }: StopwatchProps) => {
   return (
     <div className={styles.cronometro}>
       <p className={styles.titulo}>Chose a card and start the stopwatch</p>
-      Time: {time}
       <div className={styles.relogioWrapper}>
-        <Clock />
+        <Clock time={time} />
       </div>
       <Button>Start</Button>
     </div>
